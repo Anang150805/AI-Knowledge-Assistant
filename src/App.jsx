@@ -45,11 +45,16 @@ function Home() {
         Count is {count}
       </button>
 
-      {/* 🔥 pakai Link, bukan <a> */}
       <div className="mt-4">
-        <Link to="/notes" className="btn btn-primary me-2">Notes</Link>
-        <Link to="/create" className="btn btn-success me-2">Tambah</Link>
-        <Link to="/ai" className="btn btn-warning me-2">AI</Link>
+        <Link to="/notes" className="btn btn-primary me-2">
+          Notes
+        </Link>
+        <Link to="/create" className="btn btn-success me-2">
+          Tambah
+        </Link>
+        <Link to="/ai" className="btn btn-warning me-2">
+          AI
+        </Link>
       </div>
     </section>
   );
@@ -60,12 +65,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* ✅ ROOT REDIRECT */}
         <Route
           path="/"
           element={
-            isAuthenticated() ? <Navigate to="/notes" /> : <Navigate to="/login" />
+            isAuthenticated() ? (
+              <Navigate to="/notes" />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         />
 
@@ -73,14 +81,22 @@ function App() {
         <Route
           path="/login"
           element={
-            isAuthenticated() ? <Navigate to="/notes" /> : <Login />
+            isAuthenticated() ? (
+              <Navigate to="/notes" />
+            ) : (
+              <Login />
+            )
           }
         />
 
         <Route
           path="/register"
           element={
-            isAuthenticated() ? <Navigate to="/notes" /> : <Register />
+            isAuthenticated() ? (
+              <Navigate to="/notes" />
+            ) : (
+              <Register />
+            )
           }
         />
 
@@ -123,7 +139,6 @@ function App() {
 
         {/* ❌ FALLBACK */}
         <Route path="*" element={<Navigate to="/" />} />
-
       </Routes>
     </BrowserRouter>
   );
