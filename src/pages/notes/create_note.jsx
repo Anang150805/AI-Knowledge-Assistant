@@ -1,6 +1,6 @@
 import { useState } from "react";
 import API from "../../api/axios";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 
 export default function CreateNote() {
   const [title, setTitle] = useState("");
