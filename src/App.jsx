@@ -6,12 +6,17 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
-// import halaman
+// 🔥 import halaman
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import Notes from "./pages/notes/Notes";
 import CreateNote from "./pages/notes/CreateNote";
 import AskAI from "./pages/ai/AskAI";
 
-// 🔥 HOME (ISI DARI TEMPLATE KAMU)
+// 🔐 Protected Route
+import ProtectedRoute from "./components/protectedRoute";
+
+// 🔥 HOME (landing page kamu)
 function Home() {
   const [count, setCount] = useState(0);
 
@@ -35,6 +40,15 @@ function Home() {
         >
           Count is {count}
         </button>
+
+        {/* 🔥 tombol navigasi */}
+        <div className="mt-4">
+          <a href="/" className="btn btn-secondary me-2">Home</a>
+          <a href="/notes" className="btn btn-primary me-2">Notes</a>
+          <a href="/create" className="btn btn-success me-2">Tambah</a>
+          <a href="/ai" className="btn btn-warning me-2">AI</a>
+          <a href="/login" className="btn btn-dark">Login</a>
+        </div>
       </section>
     </>
   );
@@ -45,10 +59,40 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/* 🌐 PUBLIC */}
         <Route path="/" element={<Home />} />
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/create" element={<CreateNote />} />
-        <Route path="/ai" element={<AskAI />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* 🔐 PROTECTED */}
+        <Route
+          path="/notes"
+          element={
+            <ProtectedRoute>
+              <Notes />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute>
+              <CreateNote />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ai"
+          element={
+            <ProtectedRoute>
+              <AskAI />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </BrowserRouter>
   );
