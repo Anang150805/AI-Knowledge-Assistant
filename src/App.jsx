@@ -65,7 +65,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* ✅ ROOT REDIRECT */}
+        {/* ✅ ROOT */}
         <Route
           path="/"
           element={
@@ -77,7 +77,7 @@ function App() {
           }
         />
 
-        {/* 🌐 PUBLIC */}
+        {/* 🌐 LOGIN */}
         <Route
           path="/login"
           element={
@@ -89,15 +89,10 @@ function App() {
           }
         />
 
+        {/* 🌐 REGISTER (FIXED) */}
         <Route
           path="/register"
-          element={
-            isAuthenticated() ? (
-              <Navigate to="/notes" />
-            ) : (
-              <Register />
-            )
-          }
+          element={<Register />} // 🔥 TIDAK ADA redirect
         />
 
         {/* 🔐 PROTECTED */}
